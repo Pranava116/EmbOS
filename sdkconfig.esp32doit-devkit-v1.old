@@ -1284,6 +1284,7 @@ CONFIG_SPI_SLAVE_ISR_IN_IRAM=y
 #
 # ESP-Driver:UART Configurations
 #
+# default:
 # CONFIG_UART_ISR_IN_IRAM is not set
 # end of ESP-Driver:UART Configurations
 
