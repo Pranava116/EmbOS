@@ -5,5 +5,5 @@
 #include<stdckdint.h>
 
 void shell_init(void);
-
+void execute_cmd(); 
 #endif

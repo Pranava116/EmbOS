@@ -1,11 +1,11 @@
 #include "../display/ssd1306.h"
 #include "terminal.h"
 #include "driver/uart.h"
+#include "f"
 
 #define URT_NUM UART_NUM_0
 #define BUF_SIZE 1024
 #define UART_BAUD_RATE  115200
-
 void uart_init() {
     const uart_config_t uart_config = {
         .baud_rate = UART_BAUD_RATE,
@@ -20,13 +20,26 @@ void uart_init() {
     uint8_t data[BUF_SIZE];
     int i = 0;
     while (1) {
+
         int len = uart_read_bytes(URT_NUM, data, BUF_SIZE, pdMS_TO_TICKS(100));
         if (len > 0) {
-            i++;
+        
             data[len] = '\0';
             printf("Received: %s\n", data);
-            oled_print(0, i, (char*)data);
+            if(data[0] == '\r'){
+                printf("Recieved enter key\r\n");
+                execute_cmd();
+            }
+            oled_print(i%8, 0, (char*)data);
+            i++;
         }
         vTaskDelay(pdMS_TO_TICKS(1000));
 }
+}
+
+
+void execute_cmd(char cmd) {
+      if(cmd == 'tasks'){
+
+  }
 }
