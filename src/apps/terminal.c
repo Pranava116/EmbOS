@@ -1,7 +1,6 @@
 #include "../display/ssd1306.h"
 #include "terminal.h"
 #include "driver/uart.h"
-#include "f"
 
 #define URT_NUM UART_NUM_0
 #define BUF_SIZE 1024
@@ -28,7 +27,7 @@ void uart_init() {
             printf("Received: %s\n", data);
             if(data[0] == '\r'){
                 printf("Recieved enter key\r\n");
-                execute_cmd();
+                execute_cmd(data);
             }
             oled_print(i%8, 0, (char*)data);
             i++;
@@ -40,6 +39,6 @@ void uart_init() {
 
 void execute_cmd(char cmd) {
       if(cmd == 'tasks'){
-
+        printf("Executing tasks command\r\n");
   }
 }
